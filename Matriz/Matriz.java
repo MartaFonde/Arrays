@@ -2,11 +2,11 @@ public class Matriz {
     private int[][] matriz;
 
     /**
-     * Constructor que inicializa la matriz a tamaño NxN con valores aleatorios entre 0 y 1o.
+     * Inicializa la matriz a tamaño NxN con valores aleatorios entre 0 y 10.
      * @param n número de filas y columnas de la matriz
      */
     public Matriz(int n){
-        matriz = new int[n][n]; // inicialización!!
+        matriz = new int[n][n]; 
         for(int i=0; i<n; i++){
             for(int j=0; j<n; j++){
                 matriz[i][j]=(int)(Math.random()*11+0);
@@ -50,11 +50,7 @@ public class Matriz {
     public int suma(boolean diagonal) {
         int sumaDiag = 0;
         for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz[i].length; j++) {
-                if (i == j) {
-                    sumaDiag = matriz[i][j] + sumaDiag;
-                }
-            }
+            sumaDiag = matriz[i][i] + sumaDiag;
         }
         if (diagonal == true) {
             return sumaDiag;
@@ -66,7 +62,7 @@ public class Matriz {
 
     public int suma(int fila) {
         int sumaFila = 0;
-        if (fila < matriz.length) {
+        if (fila>=0 && fila < matriz.length) {
             for (int j = 0; j < matriz[fila].length; j++) {
                 sumaFila = matriz[fila][j] + sumaFila;
             }
