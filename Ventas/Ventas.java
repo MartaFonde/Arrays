@@ -21,11 +21,11 @@ public class Ventas {
      */
     public double media() {
         double suma = 0;
-        double mediaVentas = 0;
+        double mediaVentas;
         for (int i = 0; i < ventasMes.length; i++) {
-            suma = (double) ventasMes[i] + suma;
-            mediaVentas = suma / (double) (i + 1);
+            suma = (double) ventasMes[i] + suma;           
         }
+        mediaVentas = suma / ventasMes.length;
         return mediaVentas;
     }
 
@@ -37,21 +37,7 @@ public class Ventas {
         char asterisco = '#';
         System.out.printf("Año %d:\n\n", ano);
         for (int i = 0; i < ventasMes.length; i++) {
-            // int espacio=ventasMes[i].length; ¡¡length non existe para variables
-            // primitivas!!
-            int espacios;
-            String esp;
-            if (ventasMes[i] < 10) {
-                espacios = 1;
-                esp = "  ";
-            } else if (ventasMes[i] < 100) {
-                espacios = 2;
-                esp = " ";
-            } else {
-                espacios = 3;
-                esp = "";
-            }
-            System.out.printf("Mes %2d %s(%" + espacios + "d):", i + 1, esp, ventasMes[i]);
+            System.out.printf("Mes %2d %5s:", i + 1, "(" + ventasMes[i] + ")");
 
             for (int num = 0; num <= ventasMes[i]; num++) {
                 if (num >= 0 && num % 100 == 0) {
