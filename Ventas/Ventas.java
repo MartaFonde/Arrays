@@ -3,8 +3,7 @@ public class Ventas {
     private int ano;
 
     /**
-     * Inicializa el vector ventasMes con números aleatorios entre 0 y 1000
-     * 
+     * Inicializa el vector ventasMes con números aleatorios entre 0 y 1000.
      * @param ano año dado
      */
     public Ventas(int ano) {
@@ -16,7 +15,6 @@ public class Ventas {
 
     /**
      * Halla la media de valores del vector ventasMes
-     * 
      * @return media de ventasMes
      */
     public double media() {
