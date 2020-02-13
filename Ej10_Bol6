@@ -1,0 +1,91 @@
+import java.util.Scanner;
+
+public class Ejer10_Bol5 {
+
+    /**
+     * Genera la letra del DNI
+     * @param dni dni dado
+     * @return letra dni
+     */
+    public static char letraDni(String dni){ //Aquí pasamos o dni xa comprobado
+        char letra;
+        int numDni=2;
+        int posLetra;
+        String cadenaLetra="TRWAGMYFPDXBNJZSQVHLCKE"; 
+        String dniComprobado=comprobacionDni(dni);
+        if(dniComprobado != "*"){
+            if(dniComprobado.length() == 8){
+                numDni=Integer.parseInt(dniComprobado);
+            }
+            if(dniComprobado.length()==9){
+                numDni=Integer.parseInt(dniComprobado.substring(0, 8));
+            }
+            posLetra=numDni%23;
+            letra=cadenaLetra.charAt(posLetra);
+            return letra;
+        } else {
+            return '*';
+        }
+    }
+
+    /**
+     * Comprueba si el dni tiene puntos, en tal caso los elimina, 
+     * o si tiene la longitud correcta (8 o 9 caracteres). 
+     * De no cumplir, devuelve *
+     * @param dni dni dado
+     * @return devuelve dni comprobado o * si no es correcto.
+     */
+    public static String comprobacionDni(String dni){
+        String dniComprobado = dni;
+        String dniPuntos="";
+        if(dni.length() > 7 && dni.length() < 12){  //con puntos
+            if(dni.charAt(2) == '.' && dni.charAt(6) == '.'){
+                dniPuntos+=dni.substring(0, 2);
+                dniPuntos+=dni.substring(3, 6);
+                dniPuntos+=dni.substring(7, dni.length());
+                return dniPuntos;
+            } else {
+                return dniComprobado; 
+            }  
+        }else if (dni.length() < 8 || dni.length() > 11){
+            return "*";
+        } else {
+            return "Chega aquí";
+        }
+    }
+
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        String dni;
+        int opcion;
+        if(args.length == 0){
+            do{
+                System.out.println("=== Opciones ===");
+                System.out.println("1. Obtener letra del DNI");
+                System.out.println("2. Comprobar DNI");
+                System.out.println("3. Salir");
+                opcion=Integer.parseInt(sc.nextLine());
+                switch(opcion){
+                    case 1: System.out.println("Introduzca DNI");
+                            dni=sc.nextLine().trim();
+                            System.out.printf("Letra: ");
+                            System.out.println(letraDni(dni));
+                            break;
+                    case 2: System.out.println("Introduzca DNI");
+                            dni=sc.nextLine().trim();
+                            System.out.printf("Letra: ");
+                            System.out.println(letraDni(dni));
+                            break;
+                    case 3: System.out.println("Abur");
+                            break;
+                    default: System.out.println("opción no válida");
+                }
+            }while(opcion!=3);
+        } else 
+            if(args.length == 8 && args[0] >= '0' && args[7] >= '0'){
+                System.out.println(letraDni(args)); 
+            }
+        }
+    }
+}
